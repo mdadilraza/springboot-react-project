@@ -2,26 +2,37 @@ package com.eidiko.ems_backend_application.modelmapper;
 
 import com.eidiko.ems_backend_application.dto.EmployeeDto;
 import com.eidiko.ems_backend_application.entity.Employee;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EmployeeMapper {
 
-    public static EmployeeDto mapToEmployeeDto(Employee employee){
+    @Autowired
+    PasswordEncoder encoder;
+
+    public EmployeeDto mapToEmployeeDto(Employee employee){
         return new EmployeeDto(
                 employee.getId(),
                 employee.getFirstName(),
                 employee.getLastName(),
-                employee.getEmail()
+                employee.getEmail() ,
+                employee.getPassword()
         );
     }
 
-    public static Employee mapToEmployee(EmployeeDto employeeDto){
+    public Employee mapToEmployee(EmployeeDto employeeDto){
+
         return new Employee(
                 employeeDto.getId(),
                 employeeDto.getFirstName(),
                 employeeDto.getLastName(),
-                employeeDto.getEmail()
+                employeeDto.getEmail() ,
+                encoder.encode(employeeDto.getPassword())
         );
     }
 }

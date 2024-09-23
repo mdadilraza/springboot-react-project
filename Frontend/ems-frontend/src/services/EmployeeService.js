@@ -1,11 +1,13 @@
 import axios from 'axios'
+import axiosInstance from '../interceptor/employeeInterceptor';
 
 const REST_API_BASE_URL="http://localhost:8082/api/v1/employees";
 
-export const listOfEmployess =() => axios.get(REST_API_BASE_URL);
+export const listOfEmployess =() => axiosInstance.get();
 
-export const createEmployee =(employee) =>axios.post(REST_API_BASE_URL, employee);
-export const getEmployee =(employeeId) =>axios.get(REST_API_BASE_URL +'/'+employeeId)
-export const updateEmployee =(employeeId , employee) =>axios.put(REST_API_BASE_URL +'/'+ employeeId ,employee);
 
-export const deleteEmployee =(employeeId) => axios.delete(REST_API_BASE_URL +'/' + employeeId);
+export const createEmployee =(employee) =>axiosInstance.post('', employee);
+export const getEmployee =(employeeId) =>axiosInstance.get('/'+employeeId);
+export const updateEmployee =(employeeId , employee) =>axiosInstance.put('/'+ employeeId ,employee);
+
+export const deleteEmployee =(employeeId) => axiosInstance.delete('/' + employeeId);

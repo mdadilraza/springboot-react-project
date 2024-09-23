@@ -3,7 +3,7 @@ import React from 'react'
 const HeaderComponent = () => {
   return (
     <>
-    <header>
+    <header style={{position: 'fixed', top: 0, width: '100%'}}>
         <nav className='navbar navbar-dark bg-dark'>
         <a class="navbar-brand" href="#">Employee Management System</a>
 

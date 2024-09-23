@@ -6,12 +6,14 @@ const EmployeeComponent = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [password ,setPassword] =useState('');
     const navigator = useNavigate();
     let { id } = useParams();
     let [errors, setErrors] = useState({
         firstName: '',
         lastName: '',
-        email: ''
+        email: '' ,
+        password:''
     })
 
     //for update show the data which is present in data base to input box then user can easily  update the data
@@ -21,6 +23,7 @@ const EmployeeComponent = () => {
                 setFirstName(response.data.firstName);
                 setLastName(response.data.lastName);
                 setEmail(response.data.email);
+                setPassword(response.data.password)
             }).catch(error => {
                 console.log(error);
             })
@@ -30,7 +33,7 @@ const EmployeeComponent = () => {
     //this method is used save the data or update the data in database
     const saveOrUpdateEmployee = (e) => {
         e.preventDefault();
-        const employee = { firstName, lastName, email };
+        const employee = { firstName, lastName, email ,password};
         console.log(employee);
         if (validateForm()) {
             if (id) {
@@ -73,6 +76,12 @@ const EmployeeComponent = () => {
             errorCopy.email = '';
         } else {
             errorCopy.email = 'Email is Required '
+            valid = false;
+        }
+        if (password.trim()) {
+            errorCopy.password = '';
+        } else {
+            errorCopy.password = 'Password is Required '
             valid = false;
         }
 
@@ -133,6 +142,18 @@ const EmployeeComponent = () => {
                                         id='emails' />
                                     {
                                         errors.email && <div className='invalid-feedback'>{errors.email}</div>
+                                    }
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label htmlFor="password" className="form-label">Password:</label>
+                                    <input type="" name="password"
+                                        value={password}
+                                        className={`form-control ${errors.password ? 'is-invalid' : ''}`}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        placeholder='ENTER EMPLOYEE PASSWORD'
+                                        id='password' />
+                                    {
+                                        errors.password && <div className='invalid-feedback'>{errors.password}</div>
                                     }
                                 </div>
                                 <button className='btn btn-success' onClick={saveOrUpdateEmployee}>Submit</button>

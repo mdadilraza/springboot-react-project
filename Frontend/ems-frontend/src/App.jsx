@@ -6,6 +6,7 @@ import HeaderComponent from './components/HeaderComponent'
 import FooterComponent from './components/FooterComponent'
 import {BrowserRouter, Routes ,Route} from 'react-router-dom'
 import EmployeeComponent from './components/EmployeeComponent'
+import EntryPage from './components/EntryPage'
 function App() {
  
   return (
@@ -14,7 +15,9 @@ function App() {
     <HeaderComponent/>
     <Routes>
       {/* http://localhost:3000 */}
-      <Route path='/' element ={<ListOfEmployee/>}>  </Route>
+      <Route path='/' element={<EntryPage/>}></Route>
+      {/* http://localhost:3000 */}
+      {/* <Route path='/' element ={<ListOfEmployee/>}>  </Route> */}
       {/* http:localhost:3000/employees */}
       <Route path='/employees' element={<ListOfEmployee/>}></Route>
 

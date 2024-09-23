@@ -37,7 +37,7 @@ const ListOfEmployee = () => {
    }
   return (
 
-    <div className='container'>
+    <div className='container' style={{margin: '90px'}}>
       <h2 className='text-center'>List Of Employess</h2>
       <button className='btn btn-primary mb-2' onClick={addNewEmployee}>Add Employee</button>
       <table className='table table-striped table-bordered'>
